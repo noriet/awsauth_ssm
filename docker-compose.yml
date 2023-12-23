@@ -1,0 +1,19 @@
+services:
+  con:
+    build: con
+    tty: true
+    stdin_open: true
+    secrets:
+      - ssm_activation_code
+      - ssm_activation_id
+    volumes:
+      - ssm_authinfo:/var/lib/amazon/ssm
+
+volumes:
+  ssm_authinfo:
+
+secrets:
+  ssm_activation_code:
+    environment: "SSM_ACTIVATION_CODE"
+  ssm_activation_id:
+    environment: "SSM_ACTIVATION_ID"
